@@ -30,12 +30,19 @@ function addMenuItem(restaurant, foodItem) {
 }
 
 function removeMenuItem(restaurant, foodItem, foodType) {
-  for (var i = 0; i < restaurant.menus[foodType].length; i++)
-   if (restaurant.menus[foodItem][i] === foodItem) {
-    return restaurant.menus[foodItem.type].splice(i, 1)
-   }
+  if (restaurant.menus[foodType].length > 0) {
+  for (var i = 0; i <= restaurant.menus[foodType].length; i++) {
+   if (restaurant.menus[foodType][i].name === foodItem) {
+    restaurant.menus[foodType].splice(i, 1)
+    var nobodyEating = (`No one is eating our ${foodItem} - it has been removed from the ${foodType} menu!`)
+    return nobodyEating
+  }
 }
-
+} else {
+  var notInMenu = (`Sorry, we don't sell ${foodItem}, try adding a new recipe!`)
+    return notInMenu
+}
+}
 module.exports = {
   createRestaurant, 
   addMenuItem,
